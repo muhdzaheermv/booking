@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Signup </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../static/css/sign-up.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>  
+  <div class="container">
+    {% if form.errors %}
+    <div class="alert alert-danger">
+      <strong>{{ form.errors }}</strong>
+    </div>
+    {% endif %}
+    <div class="title">Signup</div>
+    <div class="content">
+      <form method="post" method="POST">
+        {% csrf_token %}
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Full Name</span>
+            {{form.fullname}}
+          </div>
+          <div class="input-box">
+            <span class="details">Username</span>
+            {{form.username}}
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            {{form.email}}
+          </div>
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            {{form.phone}}
+          </div>
+          <div class="input-box">
+            <span class="details">Password</span>
+            {{form.password1}}
+          </div>
+          <div class="input-box">
+            <span class="details">Confirm Password</span>
+            {{form.password2}}
+          </div>
+        </div>
+        <!-- <div class="gender-details">
+          <input type="radio" name="gender" id="dot-1">
+          <input type="radio" name="gender" id="dot-2">
+          <span class="gender-title">Gender</span>
+          <div class="category">
+            <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="gender">EV OWNER</span>
+          </label>
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="gender">STATION OWNER</span>
+          </label>
+          </div>
+        </div> -->
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+        <div class="sign-txt">Already a member? <a style="text-decoration: none; color: #4070f4;" href="">Sign in now</a></div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+
