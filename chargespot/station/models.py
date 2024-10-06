@@ -5,6 +5,7 @@ from django.utils.html import mark_safe
 import shortuuid
 from userauths.models import User
 from shortuuid.django_fields import ShortUUIDField
+from taggit.managers import TaggableManager
 
 STATION_STATUS=(
     ("Draft","Draft"),
@@ -46,7 +47,7 @@ class Station(models.Model):
     email=models.EmailField(max_length=100)
     status=models.CharField(max_length=20,choices=STATION_STATUS,default='Live')
     
-    tags = models.CharField(max_length=200,help_text="seperate tags with comma")
+    tags = TaggableManager(blank=True)
     views=models.IntegerField(default=0)
     featured=models.BooleanField(default=False)
     sid=ShortUUIDField(unique=True,length=10,max_length=20,alphabet="abcdefghijklmnopqrstuvwxyz1234567890")
@@ -68,6 +69,9 @@ class Station(models.Model):
             
     def thumbnail(self):
         return mark_safe("<img src='%s' width='50' height='50' style='objects-fit:cover; border-radius:6px;'>" % (self.image.url))
+    
+    def station_gallery(self):
+        return StationGallery.objects.filter(station=self)
     
 class StationGallery(models.Model):
     station = models.ForeignKey(Station,on_delete=models.CASCADE)

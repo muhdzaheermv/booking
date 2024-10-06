@@ -1,0 +1,338 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+<main class="main">
+
+
+
+    <section class="featured section" id="featured">
+        <div class="featured__container container">
+            <section class="about section" id="about">
+                <div class="about__container container grid">
+                    <div class="about__group">
+                        <img src={{ station.image.url }} alt="about image" class="about__img">
+
+
+
+                        <div class="container text-center">
+                            <div class="row">
+                                {% for station_gallery in station.station_gallery.all %}
+                                <div class="col">
+                                    <a href=""><img src="{{ station_gallery.image.url }}" class="img-thumbnail"
+                                            alt="..."></a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="about__data">
+                        <span class="badge bg-danger">% OFF</span>
+                        <h2 class="section__title about__title">
+                            {{station.name}}
+                        </h2>
+                        <h3 class="featured__subtitle">{{station.address}}</h3>
+                        <p class="about__description">
+                            {{station.description}}
+                            <a class="text-secondary" href="#description">Readmore</a></p>
+                            
+                            
+                            
+                            <h3 class="featured__subtitle">
+                                
+                                {% for t in station.tags.all %}
+                                <a href="" rel="tag">{{t.name}}</a>
+                                    
+                                {% endfor %}
+                                    
+                                
+                                
+                                
+                                
+                            </h3>
+                            
+                            <h3 class="featured__price badge bg-primary">{{station.mobile}}</h3><br>
+                        <span class="badge bg-secondary mb-5">{{station.email}}</span><br>
+                        <a href="#specification" class="button">Slot Book now</a>
+                    </div>
+
+
+                </div>
+            </section>
+
+            <div class="card w-75 mb-3 bg-dark" id="description">
+                <div class="card-body">
+                    <h5 class="card-title text-light">Description</h5>
+                    <p class="card-text text-light ">{{station.description}}</p>
+                </div>
+            </div>
+
+            <div class="card w-75 mb-3 bg-dark">
+                <div class="card-body">
+                    <h5 class="card-title text-light"></h5>
+                    <p class="card-text text-light ">Charging capacity :
+                        <span class=" featured__subtitle"></span>
+                    </p>
+                    <p class="card-text text-light ">Charging time :
+                        <span class=" featured__subtitle"></span>
+                    </p>
+                    <p class="card-text text-light ">installation date :
+                        <span class="featured__subtitle"></span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card w-75 mb-3 bg-dark">
+                <div class="card-body">
+                    <h5 class="card-title text-light"></h5>
+                    <p class="card-text text-light ">chat response time :
+                        <span class=" featured__subtitle"></span>
+                    </p>
+                    <p class="card-text text-light ">charging efficiency :
+                        <span class=" featured__subtitle"></span>
+                    </p>
+                    <p class="card-text text-light ">Rating :
+                        <span class="badge bg-warning">/10</span>
+                    </p>
+                    <p class="card-text text-light ">reservation cancellation window :
+                        <span class=" featured__subtitle"></span>
+                    </p>
+                    <p class="card-text text-light ">maintenance period :
+                        <span class=" featured__subtitle"></span>
+                    </p>
+                    <p class="card-text text-light ">Since :
+                        <span class=" featured__subtitle"></span>
+                    </p>
+                    <a href="" class="btn btn-primary">See more</a>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Your Address</div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ address.address }}</h5>
+                            <p class="card-text">
+                                {% if address.status == True %}
+                                <span class="badge bg-success mb-5">Verified Address</span>
+                                {% else %}
+                                <span class="badge bg-danger mb-5">NotVerified Address</span>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GEtting Average Review-->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="well well-sm">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6 text-center">
+                                    <h1 class="rating-num">
+                                        {{average_rating.rating|floatformat}}/5</h1>
+                                    <div class="rating">
+                                        <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                                        </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                                        </span><span class="glyphicon glyphicon-star-empty"></span>
+                                    </div>
+                                    <div>
+                                        <span class="glyphicon glyphicon-user"></span>{{reviews.count}} total
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="row rating-desc">
+                                        <div class="col-xs-3 col-md-3 text-right">
+                                            <span class="glyphicon glyphicon-star"></span>5
+                                        </div>
+                                        <div class="col-xs-8 col-md-9">
+                                            <div class="progress progress-striped">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+                                                    aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                                    <span class="sr-only">80%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end 5 -->
+                                        <div class="col-xs-3 col-md-3 text-right">
+                                            <span class="glyphicon glyphicon-star"></span>4
+                                        </div>
+                                        <div class="col-xs-8 col-md-9">
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+                                                    aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                                    <span class="sr-only">60%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end 4 -->
+                                        <div class="col-xs-3 col-md-3 text-right">
+                                            <span class="glyphicon glyphicon-star"></span>3
+                                        </div>
+                                        <div class="col-xs-8 col-md-9">
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                                    aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                                    <span class="sr-only">40%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end 3 -->
+                                        <div class="col-xs-3 col-md-3 text-right">
+                                            <span class="glyphicon glyphicon-star"></span>2
+                                        </div>
+                                        <div class="col-xs-8 col-md-9">
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
+                                                    aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                                    <span class="sr-only">20%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end 2 -->
+                                        <div class="col-xs-3 col-md-3 text-right">
+                                            <span class="glyphicon glyphicon-star"></span>1
+                                        </div>
+                                        <div class="col-xs-8 col-md-9">
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+                                                    aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+                                                    <span class="sr-only">15%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end 1 -->
+                                    </div>
+                                    <!-- end row -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+
+            <section class="featured section" id="featured">
+            
+                <h2 class="section__title">Related Station</h2>
+                
+                <div class="featured__container container"> 
+                    <div class="featured__content grid">
+                        
+                        
+                        
+                        {% for stations in stations %}
+                        <a class="text-decoration-none" href="{% url 'stations-detail' stations.csid %}">
+                            <article class="featured__card mix porsche">
+                            <div class="shape shape__smaller"></div>
+                            <span class="badge bg-danger">{{ stations.get_percentage|floatformat }}% OFF</span>
+                            <h1 class="featured__title">{{ stations.title }}</h1>
+                            <h3 class="featured__subtitle">{{ stations.category }}</h3>
+                            <img src={{ stations.image.url }} alt="featured 4" class="featured__img">
+                            <h3 class="featured__price badge bg-primary">${{ stations.price}}</h3><br>
+                            <span class="badge bg-secondary">${{ stations.old_price }}</span>
+                            <button class="button featured__button">
+                                <i class="fa-solid fa-charging-station"></i>
+                            </button>
+                        </article>
+                    </a>
+                        {% endfor %}
+                    </div>
+                </div>
+        </section>
+
+
+        <strong class="badge badge-success" id="review-res"></strong>
+        <section class="featured section hide-review-form" id="featured">
+            
+            <h2 class="section__title">Add a review</h2>
+            
+            <form class="row g-3 needs-validation hide-comment-form" action="" id="commentForm" method="POST">
+                {% csrf_token %}
+                <div class="col-md-6 position-relative">
+                  <label for="validationTooltip03" class="form-label">Review</label>
+                  {{review_form.rating}}
+                  <!-- <input type="text" class="form-control" required> -->
+                  {{review_form.review}}
+                </div>  
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Post</button>
+                </div>
+              </form>
+            
+    </section>
+
+            <section>
+                <div class="row d-flex justify-content-center">
+                  <div class="col-md-10 col-xl-8 text-center">
+                    <h3 class="mb-4">Station Review ({{reviews.count}})</h3>
+                    <p class="mb-4 pb-2 mb-md-5 pb-md-0">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet
+                      numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum
+                      quisquam eum porro a pariatur veniam.
+                    </p>
+                  </div>
+                </div>
+              
+                <div class="row text-center comment-list">
+                    
+                    {% for r in reviews %}
+                        
+                   
+                        
+                  <div class="col-md-4 mb-5 mb-md-0">
+                    <div class="d-flex justify-content-center mb-4">
+                      <img src="{% static "/img/user.png" %}"
+                        class="rounded-circle shadow-1-strong" width="150" height="150" />
+                    </div>
+                    <p class="px-xl-3">{{r.date|date:"d M, Y"}}</p>
+                    <h5 class="mb-3">{{ r.user.username|title }}</h5>
+                    <h6 class="text-primary mb-3">{{r.station}}</h6>
+                    <p class="px-xl-3">
+                      <i class="fas fa-quote-left pe-2"></i>
+                      {{r.review}}
+                    </p>
+                    <ul class="list-unstyled d-flex justify-content-center mb-0">
+                        {{r.rating}} /5 &#11088;
+                    </ul>
+                  </div> 
+                  {% endfor %}   
+                </div>
+              </section>
+
+              
+    </section>
+
+
+    
+
+    <!-- Related Stations -->
+     
+       
+
+
+</main>
+{% endblock content %}
+
+<!-- <article class="featured__card mix porsche">
+        <div class="shape shape__smaller"></div>
+        <span class="badge bg-danger">{{ stations.get_percentage|floatformat }}% OFF</span>
+        <h1 class="featured__title">{{ stations.title }}</h1>
+        <h3 class="featured__subtitle">{{ stations.category }}</h3>
+        <img src={{ stations.image.url }} alt="featured 4" class="featured__img">
+        <h3 class="featured__price badge bg-primary">${{ stations.price}}</h3><br>
+        <span class="badge bg-secondary">${{ stations.old_price }}</span>
+        <button class="button featured__button">
+            <i class="fa-solid fa-charging-station"></i>
+        </button>
+    </article> -->

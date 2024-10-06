@@ -13,3 +13,10 @@ def index(request):
     
     return render(request,"station/index.html",context)
 
+
+def station_detail(request,slug):
+    station=Station.objects.get(status="Live",slug=slug)
+    context = {
+        "station":station,
+    }
+    return render(request,"station/station_detail.html",context)
