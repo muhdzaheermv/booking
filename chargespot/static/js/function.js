@@ -1,4 +1,11 @@
+function menuToggle() {
+    const toggleMenu = document.querySelector('.menu');
+    toggleMenu.classList.toggle('active')
+}
 
+setTimeout(() => {
+    $(".alert").alert("close")
+}, 3000);
 
 
 $("#commentForm").submit(function(e){

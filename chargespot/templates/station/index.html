@@ -225,98 +225,32 @@
                             </button>
                         </li>
                     </ul>
+                    
+                    {% for s in stations %}
+                    
                     <div class="featured__content grid">
                         <article class="featured__card mix tesla">
                             <div class="shape shape__smaller"></div>
-                            <h1 class="featured__title">ChargeMaster X1</h1>
-                            <h3 class="featured__subtitle">CMX1A</h3>
-                            <img src={% static "img/chargepoint_img_1.png" %} alt="featured 1" class="featured__img">
-                            <h3 class="featured__price">22 kW</h3>
-                            <button class="button featured__button">
-                                <i class="fa-solid fa-charging-station"></i>
-                            </button>
-                        </article>
-                        <article class="featured__card mix tesla">
-                            <div class="shape shape__smaller"></div>
-                            <h1 class="featured__title">VoltCharge Pro</h1>
-                            <h3 class="featured__subtitle">VCPRO</h3>
-                            <img src={% static "img/chargepoint_img_2.png" %} alt="featured 1" class="featured__img">
-                            <h3 class="featured__price">50 kW</h3>
-                            <button class="button featured__button">
-                                <i class="fa-solid fa-charging-station"></i>
-                            </button>
-                        </article>
-                        <article class="featured__card mix audi">
-                            <div class="shape shape__smaller"></div>
-                            <h1 class="featured__title">TataVolt E-City</h1>
-                            <h3 class="featured__subtitle">EVC10</h3>
-                            <img src={% static "img/tata_img_1.png" %} alt="featured 3" class="featured__img">
-                            <h3 class="featured__price">50kW</h3>
-                            <button class="button featured__button">
-                                <i class="fa-solid fa-charging-station"></i>
-                            </button>
-                        </article>
-                        <article class="featured__card mix audi">
-                            <div class="shape shape__smaller"></div>
-                            <h1 class="featured__title">TataCharge Fast-1</h1>
-                            <h3 class="featured__subtitle">CHR30</h3>
-                            <img src={% static "img/tata_img_2.png" %} alt="featured 3" class="featured__img">
-                            <h3 class="featured__price">150kW</h3>
-                            <button class="button featured__button">
-                                <i class="fa-solid fa-charging-station"></i>
-                            </button>
-                        </article>
-                        <article class="featured__card mix audi">
-                            <div class="shape shape__smaller"></div>
-                            <h1 class="featured__title">TataPower Express</h1>
-                            <h3 class="featured__subtitle">EXP20</h3>
-                            <img src={% static "img/tata_img_3.png" %} alt="featured 3" class="featured__img">
-                            <h3 class="featured__price">22kW</h3>
-                            <button class="button featured__button">
-                                <i class="fa-solid fa-charging-station"></i>
-                            </button>
-                        </article>
-                        <article class="featured__card mix porsche">
-                            <div class="shape shape__smaller"></div>
-                            <h1 class="featured__title">Ather Pulse X1</h1>
-                            <h3 class="featured__subtitle">X1</h3>
-                            <img src={% static "img/ather_img_1.png" %} alt="featured 4" class="featured__img">
-                            <h3 class="featured__price">150 kW</h3>
-                            <button class="button featured__button">
-                                <i class="fa-solid fa-charging-station"></i>
-                            </button>
-                        </article>
-                        <article class="featured__card mix porsche">
-                            <div class="shape shape__smaller"></div>
-                            <h1 class="featured__title">Ather Charge A3</h1>
-                            <h3 class="featured__subtitle">A3</h3>
-                            <img src={% static "img/ather_img_2.png" %} alt="featured 4" class="featured__img">
-                            <h3 class="featured__price">250 kW</h3>
-                            <button class="button featured__button">
-                                <i class="fa-solid fa-charging-station"></i>
-                            </button>
-                        </article>
-                        <article class="featured__card mix porsche">
-                            <div class="shape shape__smaller"></div>
-                            <h1 class="featured__title">Ather Bolt E2</h1>
-                            <h3 class="featured__subtitle">E2</h3>
-                            <img src={% static "img/ather_img_3.png" %} alt="featured 4" class="featured__img">
-                            <h3 class="featured__price">100 kW</h3>
-                            <button class="button featured__button">
-                                <i class="fa-solid fa-charging-station"></i>
-                            </button>
-                        </article>
-                        <article class="featured__card mix porsche">
-                            <div class="shape shape__smaller"></div>
-                            <h1 class="featured__title">Ather Prime H0</h1>
-                            <h3 class="featured__subtitle">H0</h3>
-                            <img src={% static "img/ather_img_4.png" %} alt="featured 4" class="featured__img">
-                            <h3 class="featured__price">140 kW</h3>
+                            
+                            {% if s.featured == True %}
+                            <span class="badge text-bg-primary">Featured</span>
+                            {% endif %}
+                                
+                            <h1 class="featured__title">{{s.name}}</h1>
+                            <h3 class="featured__subtitle">{{s.address}}</h3>
+                            <img src="{{ s.image.url }}" alt="featured 1" class="featured__img">
+                            <h3 class="featured__price">{{s.mobile}}</h3>
+                            <h3 class="featured__price">{{s.email}}</h3>
+                            <h3 class="featured__price">{{s.status}}</h3>
+                            <h3 class="featured__price">{{s.views}}</h3>
                             <button class="button featured__button">
                                 <i class="fa-solid fa-charging-station"></i>
                             </button>
                         </article>
                     </div>
+
+                    {% endfor %}
+                        
                 </div>
         </section>
         <section class="offer section">

@@ -137,7 +137,7 @@ class ChargerType(models.Model):
        
 class Charger(models.Model):
     station = models.ForeignKey(Station,on_delete=models.CASCADE)
-    charger_type = models.ForeignKey(Station,on_delete=models.CASCADE)
+    charger_type = models.ForeignKey(ChargerType,on_delete=models.SET_NULL,null=True,blank=True)
     charger_number=models.CharField(max_length=1000)
     is_available = models.BooleanField(default=True)
     cid=ShortUUIDField(unique=True,length=10,max_length=20,alphabet="abcdefghijklmnopqrstuvwxyz1234567890")
@@ -165,8 +165,8 @@ class Booking(models.Model):
     phone=models.CharField(max_length=1000)
     
     station = models.ForeignKey(Station,on_delete=models.SET_NULL,null=True,blank=True)
-    charger_type = models.ForeignKey(Station,on_delete=models.SET_NULL)
-    charger=models.ManyToManyField(charger)
+    charger_type = models.ForeignKey(ChargerType,on_delete=models.SET_NULL,null=True,blank=True)
+    charger=models.ManyToManyField(Charger)
     before_discount=models.DecimalField(max_digits=12, decimal_places=2,default=0.00)
     total=models.DecimalField(max_digits=12, decimal_places=2,default=0.00)
     saved=models.DecimalField(max_digits=12, decimal_places=2,default=0.00)

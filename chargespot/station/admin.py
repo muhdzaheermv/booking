@@ -1,5 +1,5 @@
 from django.contrib import admin
-from station.models import Station,Booking,ActivityLog,StaffOnDuty,Charger,ChargerType
+from station.models import Station,Booking,ActivityLog,StaffOnDuty,Charger,ChargerType,StationGallery,StationFeatures,StationFaqs
 
 class StationAdmin(admin.ModelAdmin):
     list_display=['thumbnail','user','name','status']

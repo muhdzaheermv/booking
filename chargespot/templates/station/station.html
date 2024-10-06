@@ -4,236 +4,56 @@
 
 {% block content %}
     
-
-    
-    <main class="main">
-        <section class="home section" id="home">
-            <div class="shape shape__big"></div>
-            <div class="shape shape__small"></div>
-            <div class="home__container container grid">
-                <div class="home__data">
-                    <h1 class="home__title">Unlock the Ultimate Charge</h1>
-                    <h2 class="home__subtitle">Select Your Perfect Station</h2>
-                    <h3 class="home__elec"><i class="ri-flashlight-fill"></i>EV</h3>
-                </div>
-                <img src={% static "img/home.png" %} alt="home" class="home__img">
-                <div class="home__car">
-                    <div class="home__car-data">
-                        <div class="home__car-icon">
-                            <i class="ri-temp-cold-line"></i>
-                        </div>
-                        <h2 class="home__car-number">24°</h2>
-                        <h3 class="home__car-name">TEMPERATURE</h3>
-                    </div>
+<main class="main">
+    <section class="featured section" id="featured">
+            <h2 class="section__title">Choose Your Station</h2>
+            <div class="featured__container container">
+                <ul class="featured__filters">
+                    <li>
+                        <button class="featured__item active-featured" data-filter="all">
+                            <span>select</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="featured__item" data-filter=".porsche">
+                            <img src={% static "img/ather_logo.png" %} alt="logo 1">
+                        </button>
+                    </li>
+                    <li>
+                        <button class="featured__item" data-filter=".audi">
+                            <img src={% static "img/tata_logo.png" %} alt="logo 2">
+                        </button>
+                    </li>
+                    <li>
+                        <button class="featured__item" data-filter=".tesla">
+                            <img src={% static "img/charge_point_logo.png" %} alt="logo 3">
+                        </button>
+                    </li>
+                </ul>
                 
-                
-                    <div class="home__car-data">
-                        <div class="home__car-icon">
-                            <i class="ri-dashboard-3-line"></i>
-                        </div>
-                        <h2 class="home__car-number">873</h2>
-                        <h3 class="home__car-name">MILEAGE</h3>
-                    </div>
-            
-               
-                    <div class="home__car-data">
-                        <div class="home__car-icon">
-                            <i class="ri-flashlight-fill"></i>
-                        </div>
-                        <h2 class="home__car-number">94%</h2>
-                        <h3 class="home__car-name">BATTERY</h3>
-                    </div>
-                </div>
-                <a href="" class="home__button">Start</a>
-            </div>
-        </section>
-        <section class="about section" id="about">
-            <div class="about__container container grid">
-                <div class="about__group">
-                    <img src={% static "img/car2.jpg" %} alt="about image" class="about__img">
-                    <div class="about__card">
-                        <h3 class="about__card-title">+2,500</h3>
-                        <p class="about__card-description">Fast Charging Stations on Top Routes</p>
-                    </div>
-                </div>
-                    <div class="about__data">
-                        <h2 class="section__title about__title">
-                            Empower Your EV Journey <br> with ChargeSpot
-                        </h2>
-                        <p class="about__description">At ChargeSpot, we simplify your electric vehicle experience by offering seamless booking for charging stations. Whether you're planning ahead or need a quick recharge, our platform ensures your EV is always ready to go.
-                        </p>
-                        <a href="#" class="button">See More</a>
-                    </div>
-
-                
-            </div>
-        </section>
-        <section class="popular section" id="popular">
-            <h2 class="section__title">Find the Perfect Charger <br> for Your EV </h2>
-            <div class="popular__container container swiper">
-                <div class="swiper-wrapper">
-                    <article class="popular__card swiper-slide">
-                       <div class="shape shape__smaller"></div>                        
-                       <h1 class="popular__title">PowerBolt X2</h1>
-                       <h3 class="popular__subtitle">Car, 2-Wheeler</h3>
-                       <img src={% static "img/1.png" %} alt="popular" class="popular__img">
-                       <div class="popular__data">
-                            <div class="popular__data-group">
-                                <i class="ri-dashboard-3-line"></i> 30 mins
-                            </div>
-                            <div class="popular__data-group">
-                                <i class="ri-funds-box-line"></i> 400V
-                            </div>
-                            <div class="popular__data-group">
-                                <i class="ri-charging-pile-2-line"></i> DC
-                            </div>
-                       </div>
-                       <h3 class="popular__price">$12.00/HR</h3>
-                       <button class="button popular__button">
+                <div class="featured__content grid">
+                    
+                    
+                    
+                    {% for s in stations %}
+                    <a class="text-decoration-none" href="{% url 'stations-detail' stations.csid %}">
+                        <article class="featured__card mix porsche">
+                        <div class="shape shape__smaller"></div>
+                        <span class="badge bg-danger">{{ stations.get_percentage|floatformat }}% OFF</span>
+                        <h1 class="featured__title">{{ stations.title }}</h1>
+                        <h3 class="featured__subtitle">{{ stations.category }}</h3>
+                        <img src={{ stations.image.url }} alt="featured 4" class="featured__img">
+                        <h3 class="featured__price badge bg-primary">${{ stations.price}}</h3><br>
+                        <span class="badge bg-secondary">${{ stations.old_price }}</span>
+                        <button class="button featured__button">
                             <i class="fa-solid fa-charging-station"></i>
-                       </button>
+                        </button>
                     </article>
-                    <article class="popular__card swiper-slide">
-                        <div class="shape shape__smaller"></div>
-                        <h1 class="popular__title">EzyCharge 75A</h1>
-                        <h3 class="popular__subtitle">Autorickshaw</h3>
-                        <img src={% static "img/2.png" %} alt="popular" class="popular__img">
-                        <div class="popular__data">
-                             <div class="popular__data-group">
-                                 <i class="ri-dashboard-3-line"></i> 45 mins
-                             </div>
-                             <div class="popular__data-group">
-                                 <i class="ri-funds-box-line"></i> 230V
-                             </div>
-                             <div class="popular__data-group">
-                                 <i class="ri-charging-pile-2-line"></i> AC
-                             </div>
-                        </div>
-                        <h3 class="popular__price">$6.50/HR</h3>
-                        <button class="button popular__button">
-                             <i class="fa-solid fa-charging-station"></i>
-                        </button>
-                     </article>
-                     <article class="popular__card swiper-slide">
-                        <div class="shape shape__smaller"></div>
-                        <h1 class="popular__title">SpeedVolt 100T</h1>
-                        <h3 class="popular__subtitle">2-Wheeler</h3>
-                        <img src={% static "img/3.png" %} alt="popular" class="popular__img">
-                        <div class="popular__data">
-                             <div class="popular__data-group">
-                                 <i class="ri-dashboard-3-line"></i> 20 mins
-                             </div>
-                             <div class="popular__data-group">
-                                 <i class="ri-funds-box-line"></i> 200V
-                             </div>
-                             <div class="popular__data-group">
-                                 <i class="ri-charging-pile-2-line"></i> AC
-                             </div>
-                        </div>
-                        <h3 class="popular__price">$5.00/HR</h3>
-                        <button class="button popular__button">
-                             <i class="fa-solid fa-charging-station"></i>
-                        </button>
-                     </article>
-                     <article class="popular__card swiper-slide">
-                        <div class="shape shape__smaller"></div>                        
-                        <h1 class="popular__title">UltraFast 300X</h1>
-                        <h3 class="popular__subtitle">Car, SUV</h3>
-                        <img src={% static "img/4.png" %} alt="popular" class="popular__img">
-                        <div class="popular__data">
-                             <div class="popular__data-group">
-                                 <i class="ri-dashboard-3-line"></i> 15 mins
-                             </div>
-                             <div class="popular__data-group">
-                                 <i class="ri-funds-box-line"></i> 800V
-                             </div>
-                             <div class="popular__data-group">
-                                 <i class="ri-charging-pile-2-line"></i> DC
-                             </div>
-                        </div>
-                        <h3 class="popular__price">$18.00/HR</h3>
-                        <button class="button popular__button">
-                             <i class="fa-solid fa-charging-station"></i>
-                        </button>
-                     </article>
-                     <article class="popular__card swiper-slide">
-                        <div class="shape shape__smaller"></div>
-                        <h1 class="popular__title">PowerBoost 50L</h1>
-                        <h3 class="popular__subtitle">2-Wheeler, Autorickshaw</h3>
-                        <img src={% static "img/5.png" %} alt="popular" class="popular__img">
-                        <div class="popular__data">
-                             <div class="popular__data-group">
-                                 <i class="ri-dashboard-3-line"></i> 40 mins
-                             </div>
-                             <div class="popular__data-group">
-                                 <i class="ri-funds-box-line"></i> 220V
-                             </div>
-                             <div class="popular__data-group">
-                                 <i class="ri-charging-pile-2-line"></i> AC
-                             </div>
-                        </div>
-                        <h3 class="popular__price">$7.00/HR</h3>
-                        <button class="button popular__button">
-                             <i class="fa-solid fa-charging-station"></i>
-                        </button>
-                     </article>
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </section>
-        <section class="features section">
-            <h2 class="section__title">More Features</h2>
-            <div class="features__container container grid">
-                <div class="features__group">
-                    <img src={% static "img/features.png" %} alt="features" class="features__img">
-                    <div class="features__card features__card-1">
-                        <h3 class="features__card-title">300+</h3>
-                        <p class="features__card-description">Fast <br> Charging</p>
-                    </div>
-                    <div class="features__card features__card-2">
-                        <h3 class="features__card-title">24/7</h3>
-                        <p class="features__card-description">Support <br> Team</p>
-                    </div>
-                    <div class="features__card features__card-3">
-                        <h3 class="features__card-title">450+</h3>
-                        <p class="features__card-description">Stations <br>Ready</p>
-                    </div>
+                </a>
+                    {% endfor %}
                 </div>
             </div>
-            <img src={% static "img/map.svg" %} alt="map" class="features__map">    
-        </section>
-        <section class="offer section">
-            <div class="offer__container container grid">
-                <img src={% static "img/offer-bg.png" %} alt="offers" class="offer__bg">
-                <div class="offer__data">
-                    <h2 class="section__title offer__title">Want exclusive deals on<br>EV charging slots?</h2>
-                    <p class="offer__description">Subscribe to our mailing list for updates on discounts, new stations, and more, delivered straight to your inbox!</p>
-                        <a href="#" class="button">Subscribe Now</a>
-                </div>
-                <img src={% static "img/offer1.png" %} alt="offer description" class="offer__img">
-            </div>           
-        </section>
-        <section class="logos section">
-            <div class="logos__container container grid">
-                <div class="logos__content">
-                    <img src={% static "img/logo1.png" %} alt="logo 1" class="logos__img">
-                </div>
-                <div class="logos__content">
-                    <img src={% static "img/logo2.png" %} alt="logo 2" class="logos__img">
-                </div>
-                <div class="logos__content">
-                    <img src={% static "img/logo3.png" %} alt="logo 3" class="logos__img">
-                </div>
-                <div class="logos__content">
-                    <img src={% static "img/logo4.png" %} alt="logo 4" class="logos__img">
-                </div>
-                <div class="logos__content">
-                    <img src={% static "img/logo5.png" %} alt="logo 5" class="logos__img">
-                </div>
-                <div class="logos__content">
-                    <img src={% static "img/logo6.png" %} alt="logo 6" class="logos__img">
-                </div>
-            </div>
-        </section>
-    </main>
-    {% endblock content %}
+    </section>
+</main>
+    
+{% endblock content %}
