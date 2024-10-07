@@ -1,11 +1,3 @@
-{% extends 'partials/base.html' %}
-{% load static %}
-
-
-{% block content %}
-
-
-
 <main class="main">
 
 
@@ -341,17 +333,3 @@
 
 
 </main>
-{% endblock content %}
-
-<!-- <article class="featured__card mix porsche">
-        <div class="shape shape__smaller"></div>
-        <span class="badge bg-danger">{{ stations.get_percentage|floatformat }}% OFF</span>
-        <h1 class="featured__title">{{ stations.title }}</h1>
-        <h3 class="featured__subtitle">{{ stations.category }}</h3>
-        <img src={{ stations.image.url }} alt="featured 4" class="featured__img">
-        <h3 class="featured__price badge bg-primary">${{ stations.price}}</h3><br>
-        <span class="badge bg-secondary">${{ stations.old_price }}</span>
-        <button class="button featured__button">
-            <i class="fa-solid fa-charging-station"></i>
-        </button>
-    </article> -->

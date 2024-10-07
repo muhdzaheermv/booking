@@ -1,0 +1,173 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+<main class="main">
+
+
+
+    <section class="featured section" id="stations">
+        <h2 class="section__title">{{charger_type.type}}</h2>
+        <h3 class=" section__title featured__subtitle">{{chargers.count}} available chargers</h3>
+
+        <div class="featured__container container">
+            <ul class="featured__filters">
+                <li>
+                    <button class="featured__item active-featured" data-filter="all">
+                        <span>select</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="featured__item" data-filter=".porsche">
+                        <img src={% static "img/ather_logo.png" %} alt="logo 1">
+                    </button>
+                </li>
+                <li>
+                    <button class="featured__item" data-filter=".audi">
+                        <img src={% static "img/tata_logo.png" %} alt="logo 2">
+                    </button>
+                </li>
+                <li>
+                    <button class="featured__item" data-filter=".tesla">
+                        <img src={% static "img/charge_point_logo.png" %} alt="logo 3">
+                    </button>
+                </li>
+            </ul>
+            
+            
+            <a href="">
+                <div class="featured__content grid">
+                    
+                    {% for c in chargers %}
+                        
+                    
+                    <article class="featured__card mix tesla">
+                        <div class="shape shape__smaller"></div>
+                        
+                        
+                        <span class="badge text-bg-primary">Featured</span>
+                        
+                        
+                        <h1 class="featured__title">Charger No: {{c.charger_number}}</h1>
+                        <h3 class="featured__subtitle">{{charger_type.type}}</h3>
+                        <img src="{{ station.image.url }}" alt="featured 1" class="featured__img">
+                        <h3 class="featured__price">Price: {{c.charger_type.price}}</h3>
+                        <h3 class="featured__price">No of Slots: {{c.charger_type.number_of_slots}}</h3>
+                        <h3 class="featured__price">Charger Capacity: {{c.charger_type.charger_capacity}}</h3>
+                        <button class="button featured__button">
+                            <i class="fa-solid fa-charging-station"></i>
+                        </button>
+                    </article>
+                    {% endfor %}
+            </div>
+        </a>
+
+                
+        </div>
+</section>
+
+<div id="booking" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-md-push-5">
+                    <div class="booking-cta">
+                        <h1>Make your reservation</h1>
+                        <p>Secure a charging slot easily. Our fast, reliable stations keep your EV ready to go. Book ahead to avoid waiting, whether you're on a trip or topping up. Enjoy hassle-free charging designed to fit your needs—convenient and simple.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-pull-7">
+                    <div class="booking-form">
+                        <form>
+                            <div class="form-group">
+                                <span class="form-label">Your Destination</span>
+                                <input class="form-control" type="text" placeholder="Enter a destination or hotel name">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Check In</span>
+                                        <input class="form-control" type="date" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Check out</span>
+                                        <input class="form-control" type="date" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <span class="form-label">Rooms</span>
+                                        <select class="form-control">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <span class="form-label">Adults</span>
+                                        <select class="form-control">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <span class="form-label">Children</span>
+                                        <select class="form-control">
+                                            <option>0</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-btn">
+                                <button class="submit-btn">Check availability</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+
+    <!-- Related Stations -->
+     
+       
+
+
+</main>
+{% endblock content %}
+
+<!-- <article class="featured__card mix porsche">
+        <div class="shape shape__smaller"></div>
+        <span class="badge bg-danger">{{ stations.get_percentage|floatformat }}% OFF</span>
+        <h1 class="featured__title">{{ stations.title }}</h1>
+        <h3 class="featured__subtitle">{{ stations.category }}</h3>
+        <img src={{ stations.image.url }} alt="featured 4" class="featured__img">
+        <h3 class="featured__price badge bg-primary">${{ stations.price}}</h3><br>
+        <span class="badge bg-secondary">${{ stations.old_price }}</span>
+        <button class="button featured__button">
+            <i class="fa-solid fa-charging-station"></i>
+        </button>
+    </article> -->

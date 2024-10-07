@@ -12,3 +12,10 @@ class StationAdmin(admin.ModelAdmin):
 
 admin.site.register(Station,StationAdmin)
 admin.site.register(Booking)
+admin.site.register(ActivityLog)
+admin.site.register(StaffOnDuty)
+admin.site.register(Charger)
+admin.site.register(ChargerType)
+admin.site.register(StationGallery)
+admin.site.register(StationFeatures)
+admin.site.register(StationFaqs)

@@ -20,3 +20,17 @@ def station_detail(request,slug):
         "station":station,
     }
     return render(request,"station/station_detail.html",context)
+
+def charger_type_detail(request,slug,ct_slug):
+    station = Station.objects.get(status="Live",slug=slug)
+    charger_type = ChargerType.objects.get(station=station,slug=ct_slug)
+    chargers=Charger.objects.filter(charger_type=charger_type,is_available=True)
+    
+    context={
+        "station":station,
+        "charger_type":charger_type,
+        "chargers":chargers,
+    }
+    
+    return render(request,"station/charger_type_detail.html",context)
+    

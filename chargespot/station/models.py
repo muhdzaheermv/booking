@@ -73,6 +73,9 @@ class Station(models.Model):
     def station_gallery(self):
         return StationGallery.objects.filter(station=self)
     
+    def station_charger_types(self):
+        return ChargerType.objects.filter(station=self)
+    
 class StationGallery(models.Model):
     station = models.ForeignKey(Station,on_delete=models.CASCADE)
     image = models.FileField(upload_to="station_gallery")
@@ -148,7 +151,7 @@ class Charger(models.Model):
     date=models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return f"{str(self.type)} = {self.station.name} - {self.price}"
+        return f"{str(self.charger_type)} = {self.station.name}"
     
 
     class Meta:
@@ -219,6 +222,8 @@ class StaffOnDuty(models.Model):
     
     def __str__(self):
         return f"{self.staff_id}"
+    
+
     
     
     
