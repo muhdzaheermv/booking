@@ -65,6 +65,90 @@
                 </div>
             </section>
 
+            <div id="booking" class="section">
+                <div class="section-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-7 col-md-push-5">
+                                <div class="booking-cta">
+                                    <h1>Make your reservation</h1>
+                                    <p>Secure a charging slot easily. Our fast, reliable stations keep your EV ready to go. Book ahead to avoid waiting, whether you're on a trip or topping up. Enjoy hassle-free charging designed to fit your needs—convenient and simple.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-md-pull-7">
+                                <div class="booking-form">
+                                    <form method="POST" action="{% url 'booking:check_charger_availability' %}">
+                                        {% csrf_token %}
+                                        
+                                        <div class="form-group">
+                                            <span class="form-label">Your Destination</span>
+                                            <input class="form-control" type="text" value="{{station.id}}" name="station-id">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <span class="form-label">Plug In</span>
+                                                    <input class="form-control" value="" name="plugin" type="date" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <span class="form-label">Plug out</span>
+                                                    <input class="form-control" name="plugout" type="date" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <span class="form-label">Number of vehicles</span>
+                                                    <select class="form-control">
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                    </select>
+                                                    <span class="select-arrow"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <span class="form-label">Number of Slots</span>
+                                                    <select class="form-control">
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                    </select>
+                                                    <span class="select-arrow"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <span class="form-label">Charger Type</span>
+                                                    <select class="form-control" name="charger-type">
+                                                        
+                                                        {% for c in station.station_charger_types %}
+
+                                                            <option value="{{c.slug}}">{{c.type}}</option>
+                                                            
+                                                        {% endfor %}
+                                                            
+                                                    </select>
+                                                    <span class="select-arrow"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-btn">
+                                            <button class="submit-btn">Check availability</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="card w-75 mb-3 bg-dark" id="description">
                 <div class="card-body">
                     <h5 class="card-title text-light">Description</h5>
@@ -96,8 +180,8 @@
                     <div class="card bg-dark mb-3">
                         <div class="card-body text-light">
                             <h5 class="card-title">{{c.type}}</h5>
-                            <p class="card-text">Price : ${{c.price}}</p>
-                            <p class="card-text">Charger Capacity: {{c.charger_capacity}}</p>
+                            <p class="card-text">Price : ₹{{c.price}}/hr</p>
+                            <p class="card-text">Charger Capacity: {{c.charger_capacity}} Kwh</p>
                             <p class="card-text">Number of slots: {{c.number_of_slots}}</p>
                             <a href="{% url 'station:charger_type_detail' c.station.slug c.slug %}" class="btn btn-primary">Book Slot</a>
                         </div>

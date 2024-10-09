@@ -25,6 +25,7 @@ urlpatterns = [
     #Custom URLS
     path("user/",include("userauths.urls")),
     path("",include("station.urls")),
+    path("booking/",include("booking.urls")),
     
     
 ]

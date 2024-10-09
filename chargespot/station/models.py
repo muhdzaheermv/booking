@@ -117,7 +117,7 @@ class StationFaqs(models.Model):
         
 class ChargerType(models.Model):
     station = models.ForeignKey(Station,on_delete=models.CASCADE)
-    type=models.CharField(max_length=10)
+    type=models.CharField(max_length=50)
     price=models.DecimalField(max_digits=12,decimal_places=2,default=0.00)
     number_of_slots=models.PositiveIntegerField(default=0)
     charger_capacity=models.PositiveIntegerField(default=0)

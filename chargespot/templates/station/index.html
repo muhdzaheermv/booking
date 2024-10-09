@@ -226,10 +226,10 @@
                         </li>
                     </ul>
                     
-                    {% for station in stations %}
                     
-                    <a href="{% url 'station:station_detail' station.slug %}">
-                        <div class="featured__content grid">
+                    <div class="featured__content grid">
+                        {% for station in stations %}
+                        <a href="{% url 'station:station_detail' station.slug %}" class="text-decoration-none">
                         <article class="featured__card mix tesla">
                             <div class="shape shape__smaller"></div>
                             
@@ -240,18 +240,18 @@
                             <h1 class="featured__title">{{station.name}}</h1>
                             <h3 class="featured__subtitle">{{station.address}}</h3>
                             <img src="{{ station.image.url }}" alt="featured 1" class="featured__img">
-                            <h3 class="featured__price">{{station.mobile}}</h3>
-                            <h3 class="featured__price">{{station.email}}</h3>
-                            <h3 class="featured__price">{{station.status}}</h3>
-                            <h3 class="featured__price">{{station.views}}</h3>
+                            <h3 class="featured__subtitle">{{station.mobile}}</h3>
+                            <h3 class="featured__subtitle text-primary">{{station.email}}</h3>
+                            <h3 class="featured__subtitle">{{station.status}}</h3>
+                            <h3 class="featured__subtitle">{{station.views}}</h3>
                             <button class="button featured__button">
                                 <i class="fa-solid fa-charging-station"></i>
                             </button>
                         </article>
+                    </a>
+                        {% endfor %}
                     </div>
-                </a>
 
-                    {% endfor %}
                         
                 </div>
         </section>
